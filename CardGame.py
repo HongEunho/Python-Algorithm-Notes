@@ -13,5 +13,4 @@ for i in range(n):
     a[i] = input().split()
     a[i].sort()
     tmp[i] = a[i][0]
-
 print(max(tmp))

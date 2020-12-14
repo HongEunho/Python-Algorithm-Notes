@@ -12,4 +12,5 @@ count += M%(K+1)
 
 result += count * most
 result += (M-count)*second
+
 print(result)

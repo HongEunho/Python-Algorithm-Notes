@@ -1,6 +1,6 @@
 from collections import deque
 
-def BFS(graph, start, visited):
+def BFS(graph, start):
     queue = deque([start]) #큐에 넣어주고
     visited[start] = True #방문처리
     while queue: #큐가 빌 때 까지
@@ -26,4 +26,4 @@ graph = [
 ]
 
 visited = [False]*9
-BFS(graph, 1, visited)
+BFS(graph, 1)

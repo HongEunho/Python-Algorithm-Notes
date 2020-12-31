@@ -26,3 +26,4 @@ for i in range(N):
              count += 1
 
 print(count)
+print(graph)

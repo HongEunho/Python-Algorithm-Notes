@@ -1,6 +1,6 @@
-from collections import deque
+myList=[1,2,3,[5,7]]
 
-queue = deque()
-queue.append(1)
-
-print(queue)
+if 5 in myList[3]:
+    print("true")
+else:
+    print("false")

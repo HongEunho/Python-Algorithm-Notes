@@ -1,8 +1,4 @@
-from collections import deque
-import copy
+graph = []
 
-queue = deque()
-queue.append((1,2))
-queue2 = copy.deepcopy(queue)
-print(queue)
-print(queue2)
+graph[0] = 1
+print(graph)

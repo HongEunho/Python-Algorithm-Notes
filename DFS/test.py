@@ -1,4 +1,4 @@
-graph = []
+a, b = list(map(int,input().split()))
 
-graph[0] = 1
-print(graph)
+print(a)
+print(b)

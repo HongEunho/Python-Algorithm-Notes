@@ -26,4 +26,4 @@ for i in range(len(ip)):
 for i in range(len(ans)-1):
     print(ans[i], end=':')
 
-print(ans[len(ans)-1])
+print(ans[-1])

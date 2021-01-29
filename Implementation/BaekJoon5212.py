@@ -11,6 +11,8 @@ dy = [1, -1, 0, 0]
 
 for x in range(r):
     for y in range(c):
+        if graph[x][y] == '.':
+            continue
         sea_count = 0
         for k in range(4):
             nx = x + dx[k]

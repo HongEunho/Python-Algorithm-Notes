@@ -25,6 +25,7 @@ def dfs(x, y, incnt):
 
 for i in range(r):
     graph.append(list(sys.stdin.readline().strip()))
+    
 myStep[ord(graph[0][0]) - ord('A')] = 1
 dfs(0, 0, 1)
 print(count)

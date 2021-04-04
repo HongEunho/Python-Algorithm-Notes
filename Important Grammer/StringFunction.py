@@ -30,4 +30,9 @@ k.split() # ['Life', 'is', 'too', 'short] Life문자열을 공백을 기준으�
 k2 = "a:b:c:d"
 k2.split(":") # ['a', 'b', 'c', 'd'] ":"를 기준으로 나눠 문자열에 저장
 
+k.isspace() # 공백으로만 이루어졌는지
+k.isdigit() # 숫자인지
+k.isalpha() # 영문자인지
+k.isalnum() # 영문자 혹은 숫자인지
+k.istitle() # 모든 단어의 첫 글자가 대문자인지
 

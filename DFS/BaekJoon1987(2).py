@@ -28,6 +28,7 @@ def bfs(x, y, z):
             print(queue)
             global count
             count = max(count, len(alpha)+1)
+            print(count)
 
 
 for i in range(r):

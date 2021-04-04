@@ -1,12 +1,4 @@
-trace = []
-trace.append((2,3))
-trace.append((3,4))
-trace.append((5,2))
-trace.append((1,6))
-result = (min(trace, key = lambda x: x[0]))[1]
-print(result)
+from bisect import bisect_left, bisect_right
+a = [1,2,3,4,5]
 
-new_graph = [1,2,'X']
-tmp = [i for i, value in enumerate(new_graph) if value == 'X']
-
-print(min(tmp))
+print(bisect_left(a, 5))

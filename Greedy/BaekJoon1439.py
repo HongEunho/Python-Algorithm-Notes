@@ -7,4 +7,5 @@ c = a.split("1")
 b2 = b.count('')
 c2 = c.count('')
 
+
 print(min(len(b)-b2, len(c)-c2))

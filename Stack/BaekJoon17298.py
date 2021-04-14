@@ -6,7 +6,7 @@ for i in range(len(A)-1, 0, -1):
     stack.append(A[i])
 
 for i in range(n-1):
-    
+
 
 
 

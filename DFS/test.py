@@ -1,4 +1,4 @@
-from bisect import bisect_left, bisect_right
-a = [1,2,3,4,5]
 
-print(bisect_left(a, 5))
+c = [[[0] * 2 for _ in range(3)] for _ in range(4)]
+
+print(c)

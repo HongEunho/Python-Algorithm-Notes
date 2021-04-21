@@ -1,16 +1,6 @@
 from itertools import permutations
 
 
-def match(candidate, banid):
-    for i in range(len(banid)):
-        if banid[i] == "*":
-            continue
-        if banid[i] != candidate[i]:
-            return False
-
-    return True
-
-
 def check(candidates, banned_id):
     for i in range(len(banned_id)):
         if len(candidates[i]) != len(banned_id[i]):

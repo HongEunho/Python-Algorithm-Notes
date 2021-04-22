@@ -13,11 +13,9 @@ def solution(n, k):
         stack.append(answer[a])
         del answer[a]
 
-        # k를 줄여나간다.
+        # k를 줄여야함.
         k = k % math.factorial(n - 1)
         n -= 1
 
 
     return stack
-
-print(solution(4, 6))

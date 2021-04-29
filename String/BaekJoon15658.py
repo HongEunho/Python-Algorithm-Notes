@@ -11,7 +11,7 @@ def dfs(index, result):
         mymax = max(mymax, result)
         mymin = min(mymin, result)
 
-    
+
 
 dfs(1, num[0])
 

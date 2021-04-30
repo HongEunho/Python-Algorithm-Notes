@@ -8,9 +8,9 @@ def roma_to_num(roma):
     sum = 0
     while i < len(roma):
         # 끝자리 일 경우는 예외사항 체크 X
-        if i == len(roma[i]) - 1:
+        if i == len(roma) - 1:
             sum += roma_dict[roma[i]]
-            i += 1
+            break
         else:
             if roma[i:i + 2] == "IV":
                 sum += 4
@@ -37,6 +37,7 @@ def roma_to_num(roma):
 
 num1 = roma_to_num(roma1)
 num2 = roma_to_num(roma2)
+
 
 sum_num = num1+num2
 roma_stack = []

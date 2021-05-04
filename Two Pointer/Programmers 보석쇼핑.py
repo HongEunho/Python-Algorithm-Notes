@@ -21,8 +21,8 @@ def solution(gems):
                 if gemdict[gems[start]] > 1:  # 하나 이상 존재하면 뒤에도 더 존재한다는 뜻이므로
                     gemdict[gems[start]] -= 1  # 하나를 제거해주고
                     start += 1  # start칸을 뒤로 한칸 이동
-                elif end-start < sect:
-                    sect = end-start
+                elif end-start < sect: # 지정한 구간보다 현재 구간이 짧으면
+                    sect = end-start # 지정한 구간 바꿔주기
                     answer = [start+1, end]
                     break
                 else:

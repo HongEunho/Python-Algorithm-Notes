@@ -11,7 +11,7 @@ def bfs(a, b, c, d):
     while queue:
         curX, curY = queue.popleft()
         if curX == c and curY == d:
-            print(visited[curX][curY] - 1)
+            print(visited[curX][curY])
             return True
 
         for i in range(8):
@@ -32,5 +32,5 @@ for i in range(n):
     visited = [[0] * l for _ in range(l)]
     a, b = map(int, input().split())
     c, d = map(int, input().split())
-    visited[a][b] = 1
+    visited[a][b] = 0
     bfs(a, b, c, d)

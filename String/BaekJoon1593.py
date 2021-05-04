@@ -15,7 +15,8 @@ for i in range(n):
         wl[ord(w[i]) - ord('A') + 26] += 1
 
 start, length, count = 0, 0, 0
-for i in range(m-n+1):
+
+for i in range(m):
     if 'a' <= s[i] <= 'z':
         sl[ord(s[i]) - ord('a')] += 1
     else:
@@ -25,17 +26,12 @@ for i in range(m-n+1):
     if length == n:
         if wl == sl:
             count+=1
+        if 'a' <= s[start] <= 'z':
+            sl[ord(s[start]) - ord('a')] -= 1
+        else:
+            sl[ord(s[start]) - ord('A') + 26] -= 1
+        start += 1
+        length -= 1
 
-
-
-
-count = 0
-
-for per in permutations(w, len(w)):
-    pers = "".join(per)
-    for j in range(len(s)-len(w)):
-        if s[j:j+len(w)] == pers:
-            count+=1
-            break
 
 print(count)

@@ -20,8 +20,6 @@ def solution(expression):
                 tmp.append(exp)
 
 
-
-
         for j in range(len(perm)):
             i = 0
             while i < len(tmp):
@@ -34,9 +32,7 @@ def solution(expression):
                     i+=1
 
         mymax = max(mymax, abs(tmp[0]))
-
-
-
+        
     return mymax
 
 print(solution("100-200*300-500+20"))

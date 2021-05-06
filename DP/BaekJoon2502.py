@@ -1,4 +1,3 @@
-d, k = map(int,input().split())
 
 x2List = [0,1,0,1]
 x1List = [0,0,1,1]

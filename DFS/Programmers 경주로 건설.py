@@ -10,20 +10,21 @@ def dfs(graph, price, x, y, fx, fy, n):
             continue
         if graph[nx][ny] == 1:
             continue
-
-
+            
         if fx!=nx and fy!= ny:
             if price[x][y]+600 < price[nx][ny]:
                 a = price[nx][ny]
                 price[nx][ny] = price[x][y]+600
                 dfs(graph, price, nx, ny, x, y, n)
-                price[nx][ny] = a
+                if nx != n-1 and ny != n-1:
+                    price[nx][ny] = a
         else:
             if price[x][y]+100 < price[nx][ny]:
                 a = price[nx][ny]
                 price[nx][ny] = price[x][y]+100
                 dfs(graph, price, nx, ny, x, y, n)
-                price[nx][ny] = a
+                if nx != n - 1 and ny != n - 1:
+                    price[nx][ny] = a
 
 def solution(board):
     answer = 0

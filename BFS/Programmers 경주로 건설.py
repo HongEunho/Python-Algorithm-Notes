@@ -41,7 +41,6 @@ def bfs(board, dir):
 
 
 def solution(board):
-    n = len(board)
     answer = min(bfs(board, 0), bfs(board, 2))
     return answer
 

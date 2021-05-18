@@ -9,7 +9,7 @@ distance = [INF]*(n+1)
 
 for i in range(m):
     a, b = map(int, sys.stdin.readline().split())
-    graph[a].append((b, 1))
+    graph[a].append(b)
 
 def dijkstra(start):
     q = []
@@ -21,10 +21,10 @@ def dijkstra(start):
         if dist > distance[now]:
             continue
         for i in graph[now]:
-            cost = dist + i[1]
-            if cost < distance[i[0]]:
-                distance[i[0]] = cost
-                heapq.heappush(q, (cost, i[0]))
+            cost = dist + 1
+            if cost < distance[i]:
+                distance[i] = cost
+                heapq.heappush(q, (cost, i))
 
 dijkstra(x)
 flag = 0

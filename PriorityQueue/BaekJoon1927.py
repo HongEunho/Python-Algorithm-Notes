@@ -1,9 +1,10 @@
 import heapq
+import sys
 
 n = int(input())
 q = []
 for i in range(n):
-    a = int(input())
+    a = int(sys.stdin.readline())
     if a > 0:
         heapq.heappush(q, a)
     else:

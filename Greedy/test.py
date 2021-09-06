@@ -1,9 +1,16 @@
-n, m = map(int, input().split())
-
+n, k = map(int, input().split())
 result = 0
-for i in range(n):
-    data = list(map(int, input().split()))
-    min_value = min(data)
 
-    result = max(min_value, result)
+while n >= k:
+    while n % k != 0:
+        n -= 1
+        result += 1
 
+    n //= k
+    result += 1
+
+while n > 1:
+    n -= 1
+    result += 1
+
+print(result)

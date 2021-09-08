@@ -17,7 +17,7 @@ distance = [INF]*(n+1)
 for i in range(m):
     a, b, c = map(int, input().split())
     # a 번 노드에서 b번 노드로 가는 비용이 c라는 뜻
-    graph[a].append((b,c))
+    graph[a].append((b, c))
 
 # 방문하지 않은 노드 중에서, 가장 최단 거리가 짧은 노드의 번호를 반환
 def get_smallest_node():

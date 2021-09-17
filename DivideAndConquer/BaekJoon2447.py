@@ -8,15 +8,15 @@ def recursive(n):
         graph[1][:3] = ["*", " ", "*"]
         return
 
-    m = n // 3
-    recursive(m)
+    div = n // 3
+    recursive(div)
 
     for i in range(3):
         for j in range(3):
             if i == 1 and j == 1:
                 continue
-            for k in range(m):
-                graph[m*i+k][m*j:m*(j+1)] = graph[k][:m]
+            for k in range(div):
+                graph[div*i + k][div*j : div*(j+1)] = graph[k][:div]
 
 
 recursive(n)

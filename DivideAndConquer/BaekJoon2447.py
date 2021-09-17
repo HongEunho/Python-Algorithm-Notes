@@ -1,10 +1,11 @@
 n = int(input())
-graph = [["*"] * n for _ in range(n)]
+graph = [[" "] * n for _ in range(n)]
 
 
 def recursive(n):
     if n == 3:
-        graph[1][2] = " "
+        graph[0][:3] = graph[2][:3] = ["*", "*", "*"]
+        graph[1][:3] = ["*", " ", "*"]
         return
 
     m = n // 3
@@ -19,4 +20,8 @@ def recursive(n):
 
 
 recursive(n)
-print(graph)
+
+for i in range(n):
+    for j in range(n):
+        print(graph[i][j], end='')
+    print()

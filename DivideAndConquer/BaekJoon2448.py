@@ -1,6 +1,31 @@
 n = int(input())
 
-graph = [[" "]*(2*n-1) for _ in range(n)]
+graph = [[" ", " ", "*", " ", " "], [" ", "*", " ", "*", " "], ["*", "*", "*", "*", "*"]]
+
+
 def recursive(N, before):
-    for i in range(2*N):
-        
+    after = [[" "] * (2 * 2 * N) for _ in range(2 * N)]
+    for i in range(N):
+        after[i][N:] = before[i]
+
+    k = 0
+    for i in range(N, 2 * N):
+        after[i][:2*N] = before[k]
+        after[i][2 * N:] = before[k]
+        k += 1
+
+    if 2 * N == n:
+        return after
+
+    return recursive(2 * N, after)
+
+
+if n == 3:
+    result = graph
+else:
+    result = recursive(3, graph)
+
+for i in result:
+    print("".join(i))
+
+print(result)

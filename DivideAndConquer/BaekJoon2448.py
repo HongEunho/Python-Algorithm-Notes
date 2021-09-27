@@ -4,14 +4,14 @@ graph = [[" ", " ", "*", " ", " "], [" ", "*", " ", "*", " "], ["*", "*", "*", "
 
 
 def recursive(N, before):
-    after = [[" "] * (2 * 2 * N) for _ in range(2 * N)]
+    after = [[" "] * (2 * 2 * N - 1) for _ in range(2 * N)]
     for i in range(N):
-        after[i][N:] = before[i]
+        after[i][N:N+2*N-1] = before[i]
 
     k = 0
     for i in range(N, 2 * N):
         after[i][:2*N] = before[k]
-        after[i][2 * N:] = before[k]
+        after[i][2 * N:2 * N+len(before[k])] = before[k]
         k += 1
 
     if 2 * N == n:
@@ -27,5 +27,3 @@ else:
 
 for i in result:
     print("".join(i))
-
-print(result)

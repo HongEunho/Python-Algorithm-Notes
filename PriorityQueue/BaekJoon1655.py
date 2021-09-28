@@ -1,16 +1,23 @@
 import heapq
+import sys
 
-n = int(input())
+n = int(sys.stdin.readline())
 
-queue = []
-myList = []
+leftHeap = []
+rightHeap = []
 for i in range(n):
-    heapq.heappush(queue, int(input()))
-    myList.append(heapq.heappop(queue))
-    
-    print(queue)
-    length = len(queue)
-    if length % 2 == 0:
-        print(queue[length//2 - 1])
+    num = int(sys.stdin.readline())
+
+    if len(leftHeap) == len(rightHeap):
+        heapq.heappush(leftHeap, -num)
     else:
-        print(queue[length//2])
+        heapq.heappush(rightHeap, num)
+
+    if rightHeap and rightHeap[0] < -leftHeap[0]:
+        leftValue = heapq.heappop(leftHeap)
+        rightValue = heapq.heappop(rightHeap)
+
+        heapq.heappush(leftHeap, -rightValue)
+        heapq.heappush(rightHeap, -leftValue)
+
+    print(-leftHeap[0])

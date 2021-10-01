@@ -9,12 +9,26 @@ def isPrime(x):
             return False
     return True
 
-def isGold(x):
-    for i in range(2, x//2):
-        a = x-i
-        
+def goldPartition(x):
+    result = []
+    for i in range(2, x//2+1):
+        if isPrime(i) and isPrime(x-i):
+            if not result:
+                result.append(i)
+                result.append(x-i)
+            else:
+                if result[1]-result[0] > x - 2*i:
+                    result[0] = i
+                    result[1] = x-i
+
+    return result
+
 
 t = int(input())
 
 for i in range(t):
     n = int(input())
+    ans = goldPartition(n)
+
+    print(*ans)
+

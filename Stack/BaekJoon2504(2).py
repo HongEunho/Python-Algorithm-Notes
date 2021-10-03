@@ -39,4 +39,11 @@ for b in bracket:
     else:
         stack.append(b)
 
-print(stack)
+for i in stack:
+    if i == '(' or i == '[':
+        print(0)
+        exit(0)
+    else:
+        answer += i
+
+print(answer)

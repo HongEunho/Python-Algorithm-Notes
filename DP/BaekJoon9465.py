@@ -5,6 +5,11 @@ for i in range(t): #전체 테스트 횟수
     graph=[]
     for j in range(2): #row은 항상 2줄
         graph.append(list(map(int, input().split())))
+
+    if col == 1:
+        print(max(graph[0][0], graph[1][0]))
+        continue
+
     graph[0][1] += graph[1][0]
     graph[1][1] += graph[0][0]
 

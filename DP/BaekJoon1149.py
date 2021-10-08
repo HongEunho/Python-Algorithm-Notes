@@ -1,7 +1,6 @@
 n = int(input())
 
 cost = []
-minCost = -int(1e9)
 dp = [[0]*3 for _ in range(n)]
 for i in range(n):
     cost.append(list(map(int, input().split())))

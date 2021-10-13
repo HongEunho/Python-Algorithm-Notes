@@ -7,7 +7,7 @@ for i in range(n):
 
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
-
+visited = [[[[False]*m for _ in range(n)] for _ in range(m)] for _ in range(n)]
 
 def redBall(x, y, direct):
     nx = x + dx[direct]
@@ -67,8 +67,9 @@ def blueBall(x, y, direct):
 
 def bfs(ra, rb, ba, bb):
     queue = deque()
-    queue.append((ra, rb, ba, bb, 0))
-    res = 0
+    queue.append((ra, rb, ba, bb, 1))
+    visited[ra][rb][ba][bb] = True
+
     while queue:
         rx, ry, bx, by, cnt = queue.popleft()
         if cnt > 10:
@@ -78,17 +79,18 @@ def bfs(ra, rb, ba, bb):
         for i in range(4):
             nrx, nry = redBall(rx, ry, i)
             nbx, nby = blueBall(bx, by, i)
-            if nrx == -1 and nry == -1:
-                if nbx == -1 and nby == -1:
-                    print(-1)
-                    exit(0)
-                else:
-                    print(cnt + 1)
-                    exit(0)
-            queue.append((nrx, nry, nbx, nby, cnt+1))
 
-        res = cnt
-    return res
+            if nbx != -1 and nby != -1:
+                if nrx == -1 and nry == -1:
+                    print(cnt)
+                    exit(0)
+
+            if not visited[nrx][nry][nbx][nby]:
+                visited[nrx][nry][nbx][nby] = True
+                queue.append((nrx, nry, nbx, nby, cnt+1))
+
+    print(-1)
+    return
 
 rx, ry, bx, by = 0, 0, 0, 0
 for i in range(n):
@@ -100,4 +102,4 @@ for i in range(n):
             bx = i
             by = j
 
-print(bfs(rx, ry, bx, by))
+bfs(rx, ry, bx, by)

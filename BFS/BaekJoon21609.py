@@ -12,23 +12,29 @@ for i in range(n):
 def find_group(a, b):
     visited = [[False] * n for _ in range(n)]
     groupQ = []
-    if graph[a][b] == -1:
-        return []
+    if graph[a][b] == -1 or graph[a][b] == -2:
+        return
+    if graph[a][b] > 0:
+        myColor = graph[a][b]
+    else:
+        myColor = 0
     cnt = 1
-    myColor = 0
     queue = deque()
     queue.append((a, b))
-
+    visited[a][b] = True
+    flag = False
     while queue:
         x, y = queue.popleft()
-        visited[x][y] = True
         groupQ.append((x, y))
+        if graph[x][y] > 0:
+            flag = True
+
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
             if nx < 0 or nx >= n or ny < 0 or ny >= n or visited[nx][ny]:
                 continue
-            if graph[nx][ny] == -1:
+            if graph[nx][ny] == -1 or graph[nx][ny] == -2:
                 continue
             if graph[nx][ny] > 0:
                 if myColor == 0:
@@ -37,39 +43,93 @@ def find_group(a, b):
                     continue
             cnt += 1
             queue.append((nx, ny))
+            visited[nx][ny] = True
 
     if cnt < 2:
-        return []
+        return
+    if not flag:
+        return
 
-    global groupCnt
+    global groupCnt, maxQ
     if cnt > groupCnt:
+        groupCnt = cnt
+        maxQ = groupQ
+    elif cnt == groupCnt:
+        # groupQ, maxQ
+        thisLen = len(groupQ)
+        maxLen = len(maxQ)
+        thisCnt, maxCnt = 0, 0
+        for i in range(thisLen):
+            if graph[groupQ[i][0]][groupQ[i][1]] == 0:
+                thisCnt += 1
+        for i in range(maxLen):
+            if graph[maxQ[i][0]][maxQ[i][1]] == 0:
+                maxCnt += 1
+        if thisCnt == maxCnt:
+            groupQ.sort(key=lambda x: x[1])
+            groupQ.sort(key=lambda x: x[0])
+            maxQ.sort(key=lambda x: x[1])
+            maxQ.sort(key=lambda x: x[0])
 
+            gx, gy, mx, my = 0, 0, 0, 0
+            for i in range(thisCnt):
+                if graph[groupQ[i][0]][groupQ[i][1]] != 0:
+                    gx = groupQ[i][0]
+                    gy = groupQ[i][1]
+                    break
+            for i in range(maxCnt):
+                if graph[maxQ[i][0]][maxQ[i][1]] != 0:
+                    mx = maxQ[i][0]
+                    my = maxQ[i][1]
+                    break
 
-    groupCnt = max(groupCnt, cnt)
+            if gx > mx:
+                maxQ = groupQ
+            elif gx == mx:
+                if gy > my:
+                    maxQ = groupQ
 
-    return groupQ
+        elif thisCnt > maxCnt:
+            maxQ = groupQ
+
+    return
 
 
 def gravity():
-    for i in range(n):
-        for j in range(n - 2, -1, -1):
-            if graph[i][j] >= 0:
-                tmp = j
-                while tmp + 1 < n and graph[i][tmp+1] == -2:
-                    graph[i][tmp+1] = graph[i][tmp]
-                    graph[i][tmp] = -2
+    for i in range(n-2, -1, -1):
+        for j in range(n):
+            if graph[i][j] != -1:
+                tmp = i
+                while tmp + 1 < n and graph[tmp+1][j] == -2:
+                    graph[tmp+1][j] = graph[tmp][j]
+                    graph[tmp][j] = -2
                     tmp += 1
 
 
+def rotate():
+    newGraph = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            newGraph[abs(n - 1 - j)][i] = graph[i][j]
+    return newGraph
 
-groupCnt = 0
+
 answer = 0
 
-for i in range(n):
-    for j in range(n):
-        groupQ = find_group(i, j)
-        if groupQ:
-            while groupQ:
-                a, b = groupQ.pop()
-                graph[a][b] = -2
-            gravity()
+while True:
+    groupCnt = 0
+    maxQ = []
+    for i in range(n):
+        for j in range(n):
+            find_group(i, j)
+
+    if not maxQ:
+        break
+    answer += len(maxQ)**2
+    for x, y in maxQ:
+        graph[x][y] = -2
+    gravity()
+    graph = rotate()
+    gravity()
+
+print(answer)

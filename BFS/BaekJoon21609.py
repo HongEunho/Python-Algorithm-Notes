@@ -22,12 +22,9 @@ def find_group(a, b):
     queue = deque()
     queue.append((a, b))
     visited[a][b] = True
-    flag = False
     while queue:
         x, y = queue.popleft()
         groupQ.append((x, y))
-        if graph[x][y] > 0:
-            flag = True
 
         for i in range(4):
             nx = x + dx[i]
@@ -47,8 +44,6 @@ def find_group(a, b):
 
     if cnt < 2:
         return
-    if not flag:
-        return
 
     global groupCnt, maxQ
 
@@ -56,28 +51,25 @@ def find_group(a, b):
         groupCnt = cnt
         maxQ = groupQ
     elif cnt == groupCnt:
-        # groupQ, maxQ
-        thisLen = len(groupQ)
-        maxLen = len(maxQ)
-        thisCnt, maxCnt = 0, 0
-        for i in range(thisLen):
+        thisZeroCnt, maxZeroCnt = 0, 0
+        for i in range(cnt):
             if graph[groupQ[i][0]][groupQ[i][1]] == 0:
-                thisCnt += 1
-        for i in range(maxLen):
+                thisZeroCnt += 1
+        for i in range(groupCnt):
             if graph[maxQ[i][0]][maxQ[i][1]] == 0:
-                maxCnt += 1
-        if thisCnt == maxCnt:
+                maxZeroCnt += 1
+        if thisZeroCnt == maxZeroCnt:
             groupQ.sort(key=lambda x: x[1])
             groupQ.sort(key=lambda x: x[0])
             maxQ.sort(key=lambda x: x[1])
             maxQ.sort(key=lambda x: x[0])
             gx, gy, mx, my = 0, 0, 0, 0
-            for i in range(thisLen):
+            for i in range(cnt):
                 if graph[groupQ[i][0]][groupQ[i][1]] != 0:
                     gx = groupQ[i][0]
                     gy = groupQ[i][1]
                     break
-            for i in range(maxLen):
+            for i in range(groupCnt):
                 if graph[maxQ[i][0]][maxQ[i][1]] != 0:
                     mx = maxQ[i][0]
                     my = maxQ[i][1]
@@ -89,7 +81,7 @@ def find_group(a, b):
                 if gy > my:
                     maxQ = groupQ
 
-        elif thisCnt > maxCnt:
+        elif thisZeroCnt > maxZeroCnt:
             maxQ = groupQ
 
     return

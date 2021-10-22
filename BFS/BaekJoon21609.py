@@ -51,6 +51,7 @@ def find_group(a, b):
         return
 
     global groupCnt, maxQ
+
     if cnt > groupCnt:
         groupCnt = cnt
         maxQ = groupQ
@@ -70,14 +71,13 @@ def find_group(a, b):
             groupQ.sort(key=lambda x: x[0])
             maxQ.sort(key=lambda x: x[1])
             maxQ.sort(key=lambda x: x[0])
-
             gx, gy, mx, my = 0, 0, 0, 0
-            for i in range(thisCnt):
+            for i in range(thisLen):
                 if graph[groupQ[i][0]][groupQ[i][1]] != 0:
                     gx = groupQ[i][0]
                     gy = groupQ[i][1]
                     break
-            for i in range(maxCnt):
+            for i in range(maxLen):
                 if graph[maxQ[i][0]][maxQ[i][1]] != 0:
                     mx = maxQ[i][0]
                     my = maxQ[i][1]
@@ -110,7 +110,7 @@ def rotate():
     newGraph = [[0] * n for _ in range(n)]
     for i in range(n):
         for j in range(n):
-            newGraph[abs(n - 1 - j)][i] = graph[i][j]
+            newGraph[n - 1 - j][i] = graph[i][j]
     return newGraph
 
 
@@ -121,8 +121,8 @@ while True:
     maxQ = []
     for i in range(n):
         for j in range(n):
-            find_group(i, j)
-
+            if graph[i][j] > 0:
+                find_group(i, j)
     if not maxQ:
         break
     answer += len(maxQ)**2
@@ -131,5 +131,4 @@ while True:
     gravity()
     graph = rotate()
     gravity()
-
 print(answer)

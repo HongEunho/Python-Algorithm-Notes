@@ -37,7 +37,13 @@ def bfs(a, b, ss):
         visited = [[False]*n for _ in range(n)]
         while queue:
             x, y, cnt = queue.popleft()
-            if cnt 
+
+            for i in range(4):
+                nx = x + dx[i]
+                ny = y + dy[i]
+                if nx < 0 or nx >= n or ny < 0 or ny >= n:
+                    continue
+                
 
     while queue:
         x, y, size, eat, sec = queue.popleft()
